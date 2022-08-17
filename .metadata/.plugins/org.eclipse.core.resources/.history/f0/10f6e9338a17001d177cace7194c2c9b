@@ -1,0 +1,15 @@
+package com.varxyz.wgt.login.dao;
+
+import com.varxyz.wgt.user.domain.User;
+
+public class LoginDao {
+
+	public User login(String userId) {
+		
+		@Override
+		public User login(String userId) {
+			return loginDao.login(userId);
+		}
+	}
+
+}

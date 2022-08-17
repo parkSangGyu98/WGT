@@ -1,0 +1,119 @@
+@charset "UTF-8";
+@font-face {
+    font-family: 'KOTRAHOPE';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/KOTRAHOPE.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+html{
+	width: 390px;
+	height: 844px;
+}
+
+body{
+	font-family: 'KOTRAHOPE';
+	margin: 0;
+	width: 390px;
+	height: 844px;
+	box-sizing: border-box;
+}
+#inputaddr, #autoName{
+	width: 0;
+	height: 0;
+	opacity: 0;
+	cursor: default;
+}
+
+.header_form{
+	margin-top: -30px;
+}
+
+.back img{
+	margin-top: 5px;
+	margin-left: 5px;
+	width: 30px;
+	height: 30px;
+}
+
+.userInformation {
+	position: absolute;
+	right: 15px;
+	top: 8px;
+	width: 24px;
+	height: 24px;
+	overflow: hidden;
+	text-indent: 999px;
+	cursor: pointer;
+}
+
+.userInformation:before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 2px;
+	width: 30px;
+	height: 2px;
+	background: #DA0037;
+	transform-origin: 0 0;
+	transition: all 0.3s;
+}
+
+.userInformation span {
+	position: absolute;
+    left: 0;
+    top: 50%;
+    width: 30px;
+    height: 2px;
+    background: #DA0037;
+    margin-top: -1px;
+    transition: opacity 0.3s;
+}
+
+.userInformation:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 2px;
+    width: 100%;
+    height: 2px;
+    background: #DA0037;
+    transform-origin: 0 100%;
+    transition: all 0.3s;
+}
+
+.selectbox {
+	font-family: 'KOTRAHOPE';
+	font-size: 20px;
+	border-radius: 10px;
+	color: black;
+	border: 2px solid #DA0037;
+	width: 60px;
+	height: 35px;
+	margin: 10px 0 10px 10px;
+	text-align: center;
+	z-index: 99;
+}
+
+.inputtext{
+	font-family: 'KOTRAHOPE';
+	font-size: 20px;
+	padding: 0 8px 0 8px;
+	border-radius: 10px;
+	border: 2px solid #DA0037;
+	display: inline-block;
+	width: 287px;
+	height: 30px;
+}
+
+.searchbtn{
+	font-family: 'KOTRAHOPE';
+	font-size: 20px;
+	background-color: #DA0037;
+    color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    width: 370px;
+    height: 30px;
+    margin-top: 15px;
+    margin-left: 10px;
+}

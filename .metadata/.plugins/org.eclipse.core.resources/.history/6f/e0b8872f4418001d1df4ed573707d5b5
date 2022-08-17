@@ -1,0 +1,19 @@
+package com.varxyz.wgt.waiting.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+@Controller("controller.waitingController")
+public class WaitingController {
+
+	@GetMapping("controller/waiting")
+	public String waitingForm() {
+		return "waiting/add_waiting";
+	}
+	
+	@PostMapping("controller/waiting")
+	public String addWaiting() {
+		return "waiting/add_waiting";
+	}
+}

@@ -1,0 +1,14 @@
+package com.varxyz.wgt.login.dao;
+
+import com.varxyz.wgt.user.domain.User;
+
+public class LoginDao {
+
+	
+	// id값을 받아 로그인하기
+	public User login(String userId) {
+		
+		return null;
+	}
+
+}

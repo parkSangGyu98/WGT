@@ -1,0 +1,18 @@
+package com.varxyz.wgt.owner.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.varxyz.wgt.owner.service.OwnerService;
+
+@Controller
+public class OwnerController {
+	OwnerService ownerService = new OwnerService();
+	
+	// 점주가입
+	@GetMapping("/addOwner")
+	public String addOwnerForm() {
+		
+		return "owner/addOwner";
+	}
+}

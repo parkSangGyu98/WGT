@@ -1,0 +1,18 @@
+1660013155354	Move 'user' to 'views'
+1660013158365	Move 'login' to 'views'
+1660025160751	Delete element
+1660025165379	Copy file
+1660025171064	Rename resource 'addUser.jsp'
+1660025582111	Rename resource 'Admin.sql'
+1660025596020	Rename resource 'Oner.sql'
+1660025602543	Rename resource 'admin'
+1660025611511	Rename resource 'addAdmin.jsp'
+1660027721701	Rename package 'com.varxyz.wgt.owner.controller'
+1660027739214	Delete element
+1660027806081	Delete element
+1660032205731	Delete element
+1660035918189	Move 'ownerLogin.jsp' to 'owner'
+1660035923256	Move 'ownerLogin.jsp' to 'login'
+1660090953404	Rename resource 'wating'
+1660091483993	Delete element
+1660094209379	Delete element

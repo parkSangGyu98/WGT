@@ -1,0 +1,6 @@
+package com.varxyz.wgt.user.controller;
+
+@Controller("controller.userController")
+public class UserController {
+	UserService userService = new UserService();
+}

@@ -1,0 +1,12 @@
+package com.varxyz.wgt.waiting.dao;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.varxyz.wgt.data.DataSourceConfig;
+
+public class WaitingDao {
+	AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DataSourceConfig.class);
+	WaitingDao dao = context.getBean("waitingDao", WaitingDao.class);
+	
+	
+}

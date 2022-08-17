@@ -1,0 +1,5 @@
+package com.varxyz.wgt.waiting.controller;
+
+public class WaitingController {
+
+}

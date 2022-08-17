@@ -1,0 +1,17 @@
+package com.varxyz.wgt.owner.service;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.varxyz.wgt.data.DataSourceConfig;
+import com.varxyz.wgt.owner.doamin.Owner;
+import com.varxyz.wgt.user.dao.UserDao;
+
+public interface OwnerService {
+	AnnotationConfigApplicationContext context = 
+			new AnnotationConfigApplicationContext(DataSourceConfig.class);
+	
+	UserDao userDao = context.getBean("userDao", UserDao.class);
+
+	void addOwner(Owner owner);
+		
+}

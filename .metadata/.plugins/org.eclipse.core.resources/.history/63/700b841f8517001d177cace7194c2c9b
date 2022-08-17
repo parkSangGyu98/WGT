@@ -1,0 +1,10 @@
+package com.varxyz.wgt.user.controller;
+
+import org.springframework.stereotype.Controller;
+
+import com.varxyz.wgt.user.service.UserService;
+
+@Controller("controller.userController")
+public class UserController {
+	UserService userService = new UserServiceImpl();
+}

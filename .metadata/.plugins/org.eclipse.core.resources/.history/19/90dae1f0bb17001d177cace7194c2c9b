@@ -1,0 +1,23 @@
+package com.varxyz.wgt.owner.dao;
+
+import javax.sql.DataSource;
+
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import com.varxyz.wgt.owner.doamin.Owner;
+
+public class OwnerDao {
+	private JdbcTemplate jdbcTemplate;
+	
+	public OwnerDao(DataSource dataSource) {
+		jdbcTemplate = new JdbcTemplate(dataSource);
+	}
+
+	public void addOwner(Owner ownerId) {
+		String sql = "INSERT INTO Owner (ownerId, passwd, name, bnumber, phone, addr) "
+				+ "VALUES (?, ?, ?, ?, ?, ?)";
+		
+		
+	}
+
+}

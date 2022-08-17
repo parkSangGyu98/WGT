@@ -1,0 +1,5 @@
+package com.varxyz.wgt.waiting.serviceImpl;
+
+public class WaitingServiceImpl {
+
+}

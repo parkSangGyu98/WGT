@@ -1,0 +1,7 @@
+package com.varxyz.wgt.owner.serviceImpl;
+
+import com.varxyz.wgt.owner.service.OwnerService;
+
+public class OwnerServiceImpl implements OwnerService {
+
+}

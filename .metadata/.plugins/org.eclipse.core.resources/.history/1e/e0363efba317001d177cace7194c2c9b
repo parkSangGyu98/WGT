@@ -1,0 +1,9 @@
+package com.varxyz.wgt.login.service;
+
+import com.varxyz.wgt.user.domain.User;
+
+public interface LoginService {
+	
+	User login(String userId);
+
+}

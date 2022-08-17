@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
+    <fullyQualifiedTypeName name="com.varxyz.wgt.user.service.UserService"/>
+    <fullyQualifiedTypeName name="com.varxyz.wgt.data.DataSourceConfig"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.AnnotationConfigApplicationContext"/>
+    <fullyQualifiedTypeName name="com.varxyz.wgt.user.serviceImpl.UserServiceImpl"/>
+    <fullyQualifiedTypeName name="javax.sql.DataSource"/>
+    <fullyQualifiedTypeName name="com.varxyz.wgt.login.dao.LoginDao"/>
+    <fullyQualifiedTypeName name="org.apache.tomcat.jdbc.pool.DataSource"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
+    <fullyQualifiedTypeName name="java.security.acl.Owner"/>
+    <fullyQualifiedTypeName name="org.springframework.jdbc.core.BeanPropertyRowMapper"/>
+    <fullyQualifiedTypeName name="com.varxyz.wgt.user.dao.UserDao"/>
+    <fullyQualifiedTypeName name="com.varxyz.wgt.owner.service.OwnerService"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.jdbc.core.JdbcTemplate"/>
+    <fullyQualifiedTypeName name="com.varxyz.wgt.owner.doamin.Owner"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="lombok.Getter"/>
+    <fullyQualifiedTypeName name="lombok.Setter"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="com.google.protobuf.TextFormat.ParseException"/>
+    <fullyQualifiedTypeName name="com.varxyz.wgt.waiting.domain.Waiting"/>
+</qualifiedTypeNameHistroy>
