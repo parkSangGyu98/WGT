@@ -9,6 +9,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.mysql.cj.Session;
 import com.varxyz.wgt.shop.domain.Menu;
 import com.varxyz.wgt.shop.domain.Shop;
 import com.varxyz.wgt.shop.service.ShopService;
@@ -29,7 +29,21 @@ public class AddShopController {
 	List<String> tempImgList = new ArrayList<>();
 	// 첫번째 폼
 	@GetMapping("/add_shop")
-	public String addShopGo() {
+	public String addShopGo(HttpSession session, Model model) {
+		String bNum = (String)session.getAttribute("bNum");
+		if (bNum == null) {
+			model.addAttribute("msg", "로그인 후 이용해주세요");
+			model.addAttribute("url", "login");
+			return "alert/alert";
+		}
+		ShopService service = new ShopServiceImpl();
+		try {
+			service.findShopByBnsNum(bNum);
+			return "redirect:/shop/viewMyShop";
+		}catch (EmptyResultDataAccessException e) {
+			
+		}
+		model.addAttribute("bNum", bNum);
 		return "shop/addShop";
 	}
 	
@@ -49,8 +63,30 @@ public class AddShopController {
 							   @RequestParam("shop_address2") String shopAddress,
 							   @RequestParam("shop_address3") String shopDetailAddress,
 							   @RequestParam("shop_address4") String shopExtraAddress,
-							   HttpSession session){
-		shop.setBusinessNumber(bnsNum);
+							   HttpSession session, Model model){
+		
+		// 빈값 입력시 예외 처리
+		if(bnsNum.trim().isEmpty() ||
+		   shopName.trim().isEmpty() ||
+		   shopPostCode.trim().isEmpty() ||
+		   shopAddress.trim().isEmpty() ||
+		   shopDetailAddress.trim().isEmpty() ||
+		   shopExtraAddress.trim().isEmpty()) {
+		
+			model.addAttribute("msg", "빈값은 입력하실 수 없습니다!");
+			return "alert/back";
+		}
+		
+		// 사업자 번호 중복시 예외 처리
+		ShopService service = new ShopServiceImpl();
+		try {
+			service.findShopByBnsNum(bnsNum);
+			model.addAttribute("msg", "이미 등록된 가게입니다. 사업자번호를 확인해주세요");
+			return "alert/back";
+		}catch (EmptyResultDataAccessException e) {
+			shop.setBusinessNumber(bnsNum);
+		}
+		
 		shop.setShopName(shopName);
 		shop.setShopPostCode(shopPostCode);
 		shop.setShopAddress(shopAddress);
@@ -70,13 +106,25 @@ public class AddShopController {
 	
 	// 두번째 폼 작성 후 세번째 폼 이동
 	@PostMapping("/add_shop3")
-	public String addShop3Form(@RequestParam("shop_hour") String shopHour,
+	public String addShop3Form(@RequestParam("shop_hour1") String shopHour1,
+							   @RequestParam("shop_hour2") String shopHour2,
 							   @RequestParam("shop_table") String shopTables,
 							   @RequestParam("shop_max_people") String shopMaxPeople,
-							   @RequestParam("shop_tel") String shopTel, HttpSession session) {
+							   @RequestParam("shop_tel1") String shopTel1,
+							   @RequestParam("shop_tel2") String shopTel2,
+							   @RequestParam("shop_tel3") String shopTel3,
+							   HttpSession session, Model model) {
+		// 빈값 입력시 예외 처리
+		if(shopTel2.trim().isEmpty() || shopTel3.trim().isEmpty()){
+			model.addAttribute("msg", "빈값은 입력하실 수 없습니다!");
+			return "alert/back";
+		}
+		
+		String shopHour = shopHour1 + " ~ " + shopHour2;
 		shop.setShopHours(shopHour);
 		shop.setShopTables(shopTables);
 		shop.setShopMaxPeoples(shopMaxPeople);
+		String shopTel = shopTel1 + "-" + shopTel2 + "-" + shopTel3;
 		shop.setShopTel(shopTel);
 		return "shop/addShop3";
 	}
@@ -200,12 +248,23 @@ public class AddShopController {
 	@PostMapping("/add_shop5")
 	public String addShop5Form(@RequestParam("menu_img") MultipartFile file,
 							   @RequestParam("menu_name") String menuName,
-							   @RequestParam("menu_price") int menuPrice,
+							   @RequestParam("menu_price") String menuPrice,
 							   @RequestParam("menu_intro") String menuIntro,
 							   Model model, HttpSession session) {
 		Menu menu = new Menu();
+		
+		// 빈값 입력시 예외 처리
+		if(menuName.trim().isEmpty() ||
+		   menuPrice.trim().isEmpty() ||
+		   menuIntro.trim().isEmpty())
+		   {
+		
+			model.addAttribute("msg", "빈값은 입력하실 수 없습니다!");
+			return "alert/back";
+		}
+		
 		menu.setMenuName(menuName);
-		menu.setMenuPrice(menuPrice);
+		menu.setMenuPrice(Integer.parseInt(menuPrice));
 		menu.setMenuIntro(menuIntro);
 		menu.setBusinessNumber(shop.getBusinessNumber());
 		

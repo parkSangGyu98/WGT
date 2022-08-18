@@ -41,30 +41,24 @@
 		</form>
 	</header>
 	
-		<div class="writearea">
-			<form action="write" method="post" style="text-align:center;">
-				<button class="writebtn" type="button" value="글쓰기" onclick = "location.href='write'"
-					style="position: relative; left: 1%; margin-top:20px; margin-bottom: 20px; cursor: pointer; z-index: 1000;">글쓰기</button>
-			</form>
-		</div>
 	<div class="mypage">
 		<a href="mypage"><img id="user"
 			src="../resources/board/img/user.png" width="30px" height="30px"
 			style="cursor: pointer;"></a>
 	</div>
-	<h3 style="text-align: center; margin-top: 35px;">게시글 작성</h3>
+	<h3 style="text-align: center; margin-top: 30px;">게시글 작성</h3>
 	<div class="write_area">
 		<form action="write" method="post" enctype="multipart/form-data"
 			style="text-align: center; display: grid; justify-content: center; margin-top: 40px;">
-			<span>제목</span>
+			<span style="font-size: 20px;">제목</span>
 			<textarea class="title_area" name="title" required="required"
-				maxlength="50" placeholder="제목을 입력하세요(최대 50자)"></textarea>
-			<span>내용</span>
-			<textarea class="content_area" name="content" required="required"
-				maxlength="150" placeholder="내용을 입력하세요(최대 150자)"></textarea>
+				maxlength="30" placeholder=" 제목을 입력하세요(최대 30자)"></textarea>
+			<span style="font-size: 20px;">내용</span>
+			<textarea class="content_area" name="content" required
+				maxlength="120" placeholder=" 내용을 입력하세요(최대 120자)"></textarea>
 			사진 선택 : <span><input type="file" accept=".jpg" name="file"
 				required="required"><br></span> <input type="submit"
-				class="add" value="등록" required="required"><br>
+				class="add" value="등록" required><br>
 		</form>
 		<button class="go_home" onclick="location.href='home'">목록으로</button>
 	</div>

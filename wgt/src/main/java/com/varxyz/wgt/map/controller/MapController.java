@@ -21,8 +21,11 @@ public class MapController {
 
 	@GetMapping("/map/map")
 	public String mapForm(Map map,Model model, HttpSession session) {
+		//검색창 검색 내용
 		model.addAttribute("name", service.search(map.getName()));
+		// 모든 가게조회
 		model.addAttribute("find", service.findAll());
+		// 아이디 세션
 		model.addAttribute("userId", session.getAttribute("userId"));
 
 		/*
@@ -46,17 +49,17 @@ public class MapController {
 			session.removeAttribute("tempShopImg");
 			// 문제 될시 주석 처리만 해주세용
 		}
-
-		System.out.println(service.findAll());
 		return "map/map";
 	}
 
 	@PostMapping("/map/map")
 	public String map(Map map, Model model) {
+		//검색 검색 내용
 		model.addAttribute("name", service.search(map.getName()));
 		List<Map> a = service.search(map.getName());
+		//주소 받기
 		model.addAttribute("addr", a.get(0).getAddress());
-		model.addAttribute("autoName", a.get(0).getName());
+		//전체 조회
 		model.addAttribute("find", service.findAll());
 		return "map/map";
 	}

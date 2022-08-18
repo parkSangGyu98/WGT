@@ -6,8 +6,25 @@ CREATE TABLE Board(
    regDate		TIMESTAMP		DEFAULT CURRENT_TIMESTAMP,
    imgname		VARCHAR(100)	DEFAULT NULL
 );
+
    CONSTRAINT Board_userId_FK FOREIGN KEY (userId) REFERENCES User(userId)
+
+SELECT * FROM Board ORDER BY regDate DESC;
 
 SELECT * FROM Board;
 
 DROP TABLE Board;
+
+SELECT DATE_FORMAT(regDate,'%y년 %m월 %d일 %H시 %i분') AS DATE FROM Board;
+
+CREATE TABLE Likes(
+   likescount	INT				PRIMARY KEY AUTO_INCREMENT,
+   userId		VARCHAR(20)		NOT NULL,
+   number 		INT				NOT NULL,
+   likescheck	INT				DEFAULT '0'
+);
+	CONSTRAINT Likes_userId_FK FOREIGN KEY (userId) REFERENCES User(userId) ON DELETE CASCADE,
+	CONSTRAINT Likes_imgname_FK FOREIGN KEY (number) REFERENCES Board(number) ON DELETE CASCADE
+
+SELECT * FROM Likes;
+DROP TABLE Likes;

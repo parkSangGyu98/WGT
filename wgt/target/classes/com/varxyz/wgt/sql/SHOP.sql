@@ -6,7 +6,7 @@ CREATE TABLE shop (
 	shopAddress			VARCHAR(50)		NOT NULL,
 	shopDetailAddress	VARCHAR(50)		NOT NULL,
 	shopExtraAddress	VARCHAR(50)		DEFAULT '없음',
-	shopHours			VARCHAR(11)		NOT NULL,
+	shopHours			VARCHAR(20)		NOT NULL,
 	shopTables			VARCHAR(2)		NOT NULL,
 	shopMaxPeoples		VARCHAR(2)		NOT NULL,
 	shopImg				VARCHAR(10)		NOT NULL DEFAULT 'default'
@@ -45,3 +45,4 @@ SELECT s.BUSINESS_NUMBER,
 menu m WHERE s.BUSINESS_NUMBER = '123-4568-7891';
 
 SELECT * FROM shop WHERE BUSINESS_NUMBER = '123-456-789';
+
