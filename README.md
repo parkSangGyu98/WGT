@@ -1,5 +1,5 @@
 # WGT (Where are you going today?)
-+ 함께 운동하기를 원하는 사람들을 위한 만남 및 PT 서비스 제공 사이트
++ 
 + 2022.8.8 ~ 2022.8.19
 ## 팀 구성
 + 총 5명 ( [본인](https://github.com/parkSangGyu98) [태우](https://github.com/workhan0918) 태영 [기열](https://github.com/BaekKiYeol) [성호](https://github.com/LeeSeongHo7984) )
