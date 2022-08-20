@@ -142,7 +142,13 @@
 
 
 + 웨이팅 조회 및 등록
-  1. ㄹㅇ
+  1. 매장명과 로그인되어있는 ID 세션을 이용하여 정보를 가져왔습니다.
+  2. 순서나 내 앞의 팀들은 DB에 저장된 regDate를 비교하여 계산하였습니다.
+  3. 웨이팅 첫번째 순서일 때 자동으로 웨이팅 취소를 시키기 위해 먼저 현재시간에서 5분뒤의 시간을 DB에 저장시켰습니다.
+  4. DB에 저장한 시간과 현재시간을 비교해 현재시간이 더 크다면 웨이팅을 삭제시켜주었습니다.
+  
+                       WaitingController 일부
+  
                        @GetMapping("/controller/get_waiting")
                        public String getWaitingForm(Model model, HttpSession session) throws ParseException {
                        // 웨이팅을 하지 않았을 때
