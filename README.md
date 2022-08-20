@@ -42,22 +42,22 @@
               map.jsp 스크립트 일부
               
               for (var i = 0, len = count; i < len; i++) {
-                            var gapX = (MARKER_WIDTH), // 스프라이트 이미지에서 마커로 사용할 이미지 X좌표 간격 값
-                            originY = (MARKER_HEIGHT) * i, // 스프라이트 이미지에서 기본, 클릭 마커로 사용할 Y좌표 값
-                            overOriginY = (OVER_MARKER_HEIGHT) * i, // 스프라이트 이미지에서 오버 마커로 사용할 Y좌표 값
-                            normalOrigin = new kakao.maps.Point(0, originY), // 스프라이트 이미지에서 기본 마커로 사용할 영역의 좌상단 좌표
-                            clickOrigin = new kakao.maps.Point(gapX, originY), // 스프라이트 이미지에서 마우스오버 마커로 사용할 영역의 좌상단 좌표
-                            overOrigin = new kakao.maps.Point(gapX * 2, overOriginY); // 스프라이트 이미지에서 클릭 마커로 사용할 영역의 좌상단 좌표
+              var gapX = (MARKER_WIDTH), // 스프라이트 이미지에서 마커로 사용할 이미지 X좌표 간격 값
+              originY = (MARKER_HEIGHT) * i, // 스프라이트 이미지에서 기본, 클릭 마커로 사용할 Y좌표 값
+              overOriginY = (OVER_MARKER_HEIGHT) * i, // 스프라이트 이미지에서 오버 마커로 사용할 Y좌표 값
+              normalOrigin = new kakao.maps.Point(0, originY), // 스프라이트 이미지에서 기본 마커로 사용할 영역의 좌상단 좌표
+              clickOrigin = new kakao.maps.Point(gapX, originY), // 스프라이트 이미지에서 마우스오버 마커로 사용할 영역의 좌상단 좌표
+              overOrigin = new kakao.maps.Point(gapX * 2, overOriginY); // 스프라이트 이미지에서 클릭 마커로 사용할 영역의 좌상단 좌표
 
-                            positions.push(new kakao.maps.LatLng(document
-                                .getElementById("longitude" + i).value, document
-                                .getElementById("latitude" + i).value)); //좌표값을 받아와 배열에 추가하여 마커를 표시
+              positions.push(new kakao.maps.LatLng(document
+              .getElementById("longitude" + i).value, document
+              .getElementById("latitude" + i).value)); //좌표값을 받아와 배열에 추가하여 마커를 표시
 
-                            content.push('<div class="wrap"><div class="info"><div class="title">'
-                                    + document.getElementById("findname" + i).value
-                                    + '</div></div></div>');//가게이름을 받아와 배열에 추가
+              content.push('<div class="wrap"><div class="info"><div class="title">'
+               + document.getElementById("findname" + i).value
+               + '</div></div></div>');//가게이름을 받아와 배열에 추가
 
-                            inputText.push(document.getElementById("findname" + i).value)
+              inputText.push(document.getElementById("findname" + i).value)
 
                             // 마커를 생성하고 지도위에 표시합니다
                             addMarker(positions[i], inputText[i], content[i],
@@ -138,7 +138,7 @@
                               public List<Map> search(String name){
                               String sql = "SELECT * FROM test WHERE name like '%" + name +"%' ";
                               return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Map>(Map.class));
-                              }
+                              }              
 
 
 + 웨이팅 조회 및 등록
