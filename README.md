@@ -1,5 +1,5 @@
 # WGT (Where are you going today?)
-+ 매장 웨이팅 및 소규모 SNS 서비스 제공 사이트
++ 매장 웨이팅 등록 및 소규모 SNS 서비스 제공 사이트 (모바일 인터페이스)
 + 2022.8.8 ~ 2022.8.20
 ## 팀 구성
 + 총 5명 ( [본인](https://github.com/parkSangGyu98) [태우](https://github.com/workhan0918) [태영](https://github.com/wed456) [기열](https://github.com/BaekKiYeol) [성호](https://github.com/LeeSeongHo7984) )
@@ -235,7 +235,68 @@
   
                             
 
+## 구현 화면
+  ### 로그인
+  
+  ![image](https://user-images.githubusercontent.com/103983349/185738173-a63e5598-d8cd-4302-98e1-bbd43f3fc4ad.png)
 
+  ### 로그인
+  
+  url 위치
+  
+  ### 회원가입
+  
+  url 위치
+  
+  ### 점주 회원가입
+  
+  url 위치
+  
+  ### 메인 화면
+  
+  url 위치
+  
+  ### 우측상단 버튼
+  
+  ![image](https://user-images.githubusercontent.com/103983349/185738276-ca874d22-c423-42cd-8b62-3764b5c2b070.png)
+  
+  ### 나의 웨이팅 내역
+  
+  url 위치
+  
+  ### 회원 정보 열람 및 수정
+  
+  url 위치
+  
+  ### 검색
+  
+  url 위치
+  
+  ### 매장 정보 조회
+  
+  url 위치
+  
+  ### 웨이팅 등록
+  
+  url 위치
+  
+  ### SNS
+  
+  url 위치
+  
+  ### 게시글 작성
+  
+  url 위치
+  
+  ### 게시글 수정
+  
+  url 위치
+  
+  ### 점주 매장 등록
+  
+  url 위치
+  
+  ### 점주 메뉴 등록
 
-
+  url 위치
 
