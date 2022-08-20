@@ -39,9 +39,9 @@
     2. 카카오지도API를 이용하여 마커를 지도에 표시합니다.
     3. 검색란에 매장명 입력 시 검색한 단어를 포함하는 모든 매장을 보여줍니다.
     
-                            map.jsp 스크립트 일부
+                    map.jsp 스크립트 일부
 
-                            for (var i = 0, len = count; i < len; i++) {
+                    for (var i = 0, len = count; i < len; i++) {
                             var gapX = (MARKER_WIDTH), // 스프라이트 이미지에서 마커로 사용할 이미지 X좌표 간격 값
                             originY = (MARKER_HEIGHT) * i, // 스프라이트 이미지에서 기본, 클릭 마커로 사용할 Y좌표 값
                             overOriginY = (OVER_MARKER_HEIGHT) * i, // 스프라이트 이미지에서 오버 마커로 사용할 Y좌표 값
