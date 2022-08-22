@@ -83,6 +83,9 @@ public class OwnerLoginController {
 		
 		return "error/error";
 					
+		
+		
+		
 //		try {
 //			Owner ownerList = new Owner();
 //			ownerList = ownerLoginService.ownerLogin(owner.getOwnerId());
@@ -112,5 +115,20 @@ public class OwnerLoginController {
 //		
 //		return  "error/error";
 	}
+	
+	// 로그아웃
+	@GetMapping("/ownerLogOut")
+	public String ownerLogOutForm() {
+		
+		return "logOut/ownerLogOut";
+	}
+	
+	@PostMapping("ownerLogOut")
+	public String ownerLogOut(HttpSession session) {
+		session.invalidate(); // 세션단절
+		
+		return "login/ownerLogin";
+	}
+	
 
 }

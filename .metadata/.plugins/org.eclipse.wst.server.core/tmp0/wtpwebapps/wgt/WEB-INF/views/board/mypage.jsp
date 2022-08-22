@@ -55,32 +55,30 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 			src="../resources/board/img/user.png" width="30px" height="30px"
 			style="cursor: pointer;"></a>
 	</div>
-	<c:forEach var="user" items="${userList}">
- 		${user.userId}
- 		${user.name}
-  		${user.phone}
-	</c:forEach>
+	<div class="userinfo" style="text-align: center; margin-top: 20px; font-size: 20px;">
+		<c:forEach var="user" items="${userList}">
+ 			${user.userId}님의 마이페이지
+		</c:forEach>
+	</div>
 
 	<div class="body1">
 		<div class="feedReactionButton">
 			<!-- <button class="heartbtn" onclick="addLike()"><i class="far fa-heart"></i></button> -->
 			<div class="boardarea">
 				<c:forEach var="item" items="${board}" varStatus="status">
-					<h5	style="text-align: center; position: relative; margin-bottom: -25px; left: 1%; display:none;">
+					<h5	style="text-align: center; position: relative; margin-bottom: -25px; left: 1%;">
 						[No.${item.number}]
 					</h5>
 					<div class="write" style="margin-top: 30px; margin-bottom: 10px;">
 						<img src="../resources/board/img/upload/${item.imgname}.jpg"
-							style="width: 370px; height: 330px"><br>
-						<div class="emptyheart">
+							style="width: 370px; height: 330px; border-radius: 5px;"><br>
+						<div class="likearea">
 							<a class="likebtn"
 								style="display: flex; padding-left: 1px; margin-top: 1px;"></a>
 							<div class="feedReaction">
 								<span class="liketext">좋아요 <span class="likesresult">0</span>개
 								</span>
 							</div>
-							<%-- <p><%= sf.format(nowTime) %></p> --%>
-							<%-- <p>${item.regDate}</p> --%>
 						</div>
 						<p>
 							<fmt:formatDate pattern="yy년MM월dd일 a hh:mm" value="${item.regDate}" />
@@ -116,12 +114,12 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 	}
 	
 	function upCheck(num) {
-		const link = "update?bid=" + num;
+		const link = "update?number=" + num;
 		location.href=link;
 	};
 	
 	function delCheck(num) {
-		const link = "delete?bid=" + num;
+		const link = "delete?number=" + num;
 		if(confirm("정말 삭제하시겠습니까?")){
 			/*console.log(num);*/
  			alert("삭제를 완료하였습니다.");

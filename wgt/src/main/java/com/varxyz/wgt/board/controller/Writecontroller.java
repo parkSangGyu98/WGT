@@ -5,11 +5,9 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.UUID;
 
-import javax.naming.SizeLimitExceededException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.fileupload.FileUploadException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +25,12 @@ public class Writecontroller {
 
 	// 등록하기 화면
 	@GetMapping("/board/write")
-	public String post(Model model) {
+	public String post(HttpSession session, Model model) {
+		if (session.getAttribute("userId") == null) {
+			model.addAttribute("msg", "로그인 후 이용해주세요");
+			model.addAttribute("url", "../login");
+			return "alert/alert";
+		}
 		return "/board/write";
 	}
 

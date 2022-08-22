@@ -77,16 +77,7 @@ public class AddShopController {
 			return "alert/back";
 		}
 		
-		// 사업자 번호 중복시 예외 처리
-		ShopService service = new ShopServiceImpl();
-		try {
-			service.findShopByBnsNum(bnsNum);
-			model.addAttribute("msg", "이미 등록된 가게입니다. 사업자번호를 확인해주세요");
-			return "alert/back";
-		}catch (EmptyResultDataAccessException e) {
-			shop.setBusinessNumber(bnsNum);
-		}
-		
+		shop.setBusinessNumber(bnsNum);	
 		shop.setShopName(shopName);
 		shop.setShopPostCode(shopPostCode);
 		shop.setShopAddress(shopAddress);
@@ -153,11 +144,14 @@ public class AddShopController {
 		
 		// resources에 temp 폴더 절대 경로 입력 String uploadFolder = "";  
 		// 점주가 등록 취소 할 수 있기때문에 우선은 temp폴더에 임시 저장
-		String uploadFolder = "C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp";
+		//String uploadFolder = "C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp";
 		
 		// 집 경로
 //		String uploadFolder = "C:\\Users\\hanta\\Desktop\\mycoding\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp";
 		
+		//test
+		String uploadFolder = "D:\\lty\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img";
+				
 		/*
 		  파일 업로드시 파일명이 동일한 파일이 이미 존재할 수도 있고 사용자가 
 		  업로드 하는 파일명이 언어 이외의 언어로 되어있을 수 있다. 
@@ -212,8 +206,8 @@ public class AddShopController {
 			service.addMenu(menuItem);
 		}
 		for (String img : (List<String>)session.getAttribute("tempImgList")) {
-			File tempImg = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp\\" + img + ".jpg");
-			File newImg = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img\\" + img + ".jpg");
+			File tempImg = new File("C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp\\" + img + ".jpg");
+			File newImg = new File("C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img\\" + img + ".jpg");
 			
 			// 집 경로
 			
@@ -228,8 +222,8 @@ public class AddShopController {
 		}
 		session.removeAttribute("tempImgList");
 		String img = (String)session.getAttribute("tempShopImg");
-		File tempImg = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp\\" + img + ".jpg");
-		File newImg = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\shop_img\\" + img + ".jpg");
+		File tempImg = new File("C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp\\" + img + ".jpg");
+		File newImg = new File("C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\shop_Img\\" + img + ".jpg");
 		
 		// 집 경로
 		
@@ -286,7 +280,7 @@ public class AddShopController {
 		
 		// resources에 temp 폴더 절대 경로 입력 String uploadFolder = "";  
 		// 점주가 등록 취소 할 수 있기때문에 우선은 temp폴더에 임시 저장
-		String uploadFolder = "C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp";
+		String uploadFolder = "C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp";
 		
 		// 집 경로
 //		String uploadFolder = "C:\\Users\\hanta\\Desktop\\mycoding\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp";
@@ -328,8 +322,8 @@ public class AddShopController {
 				service.addMenu(menuItem);
 			}
 			for (String img : (List<String>)session.getAttribute("tempImgList")) {
-				File tempImg = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp\\" + img + ".jpg");
-				File newImg = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img\\" + img + ".jpg");
+				File tempImg = new File("C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp\\" + img + ".jpg");
+				File newImg = new File("C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img\\" + img + ".jpg");
 				
 				// 집 경로
 				
@@ -344,8 +338,8 @@ public class AddShopController {
 			}
 			session.removeAttribute("tempImgList");
 			String img = (String)session.getAttribute("tempShopImg");
-			File tempImg = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp\\" + img + ".jpg");
-			File newImg = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\shop_img\\" + img + ".jpg");
+			File tempImg = new File("C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp\\" + img + ".jpg");
+			File newImg = new File("C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\shop_Img\\" + img + ".jpg");
 			
 			// 집 경로
 			

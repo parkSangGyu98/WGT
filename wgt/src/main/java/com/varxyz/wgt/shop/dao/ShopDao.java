@@ -22,11 +22,16 @@ private JdbcTemplate jdbcTemplate;
 	}
 	
 	// 매장명으로 매장 정보 가져오기
-	public Shop findAllByShopName(String shopName){
+	public List<Shop> findAllByShopName(String shopName){
+		String sql = "SELECT * FROM shop WHERE shopName = ?";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Shop>(Shop.class), shopName);
+	}
+	
+	// 매장명으로 매장 정보 가져오기
+	public Shop findAllByShopNameObject(String shopName){
 		String sql = "SELECT * FROM shop WHERE shopName = ?";
 		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Shop>(Shop.class), shopName);
 	}
-	
 	// 매장 추가
 	public boolean addShop(Shop shop) {
 		String sql = "INSERT INTO SHOP (businessNumber, shopName, shopTel, shopPostCode, shopAddress, "
@@ -57,6 +62,7 @@ private JdbcTemplate jdbcTemplate;
 	// 사업자 번호로 매장 메뉴 전체 검색
 	public List<Menu> findShopMenuByBnsNum(String bnsNum) {
 		String sql = "SELECT * FROM menu WHERE businessNumber = ?";
+		System.out.println(jdbcTemplate.query(sql, new BeanPropertyRowMapper<Menu>(Menu.class), bnsNum));
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Menu>(Menu.class), bnsNum);
 	}
 	
@@ -72,7 +78,7 @@ private JdbcTemplate jdbcTemplate;
 				+ " WHERE MENU_NAME = ?";
 		jdbcTemplate.update(sql, updatedMenu.getMenuName(), updatedMenu.getMenuIntro(), 
 								 updatedMenu.getMenuPrice(), updatedMenu.getMenuImg(), oldMenu.getMenuName());
-		File file = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img\\" + oldMenu.getMenuImg() + ".jpg");
+		File file = new File("C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img\\" + oldMenu.getMenuImg() + ".jpg");
 		// 집 경로
 //		File file = new File("C:\\Users\\hanta\\Desktop\\mycoding\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img" + oldMenu.getMenuImg() + ".jpg");
 		if(!updatedMenu.getMenuImg().equals(oldMenu.getMenuImg())) {
@@ -85,7 +91,7 @@ private JdbcTemplate jdbcTemplate;
 	public boolean deleteShopMenu(String menuName, String menuImg) {
 		String sql ="DELETE FROM menu WHERE menuName = ?";
 		jdbcTemplate.update(sql, menuName);
-		File file = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img\\" + menuImg + ".jpg");
+		File file = new File("C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img\\" + menuImg + ".jpg");
 		file.delete();
 		return true;
 	}
@@ -93,7 +99,7 @@ private JdbcTemplate jdbcTemplate;
 	// 매장 정보 수정
 	public boolean updateShop(Shop shop ,String oldImg) {
 		if(!oldImg.equals(shop.getShopImg())) {
-			File file = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\shop_img\\" + oldImg + ".jpg");
+			File file = new File("C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\shop_Img\\" + oldImg + ".jpg");
 			file.delete();
 		}
 
@@ -104,9 +110,21 @@ private JdbcTemplate jdbcTemplate;
 		return true;
 	}
 	
+	
 	// 모든 매장 정보 불러오기
 	public List<Shop> findAllShop() {
 		String sql ="SELECT * FROM shop";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Shop>(Shop.class));
+	}
+
+	public List<Menu> findAllMenu() {
+		String sql ="SELECT * FROM menu";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Menu>(Menu.class));
+	}
+
+	public List<String> findAllBns() {
+		String sql ="SELECT businessNumber FROM menu";
+		List<String> data = jdbcTemplate.queryForList(sql ,String.class);
+		return data;
 	}
 }
