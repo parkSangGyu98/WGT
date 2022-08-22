@@ -323,7 +323,7 @@
   
   ### 회원 정보 열람 및 수정
   
-  url 위치
+  ![image](https://user-images.githubusercontent.com/103983349/185879805-9176988a-07de-4d6a-9205-e67152bca744.png)
   
   ### 검색
   
