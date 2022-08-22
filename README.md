@@ -141,6 +141,8 @@
                               return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Map>(Map.class));
                               }              
 
+  4. 
+
 
 + 웨이팅 조회 및 등록
   1. 매장명과 로그인되어있는 ID 세션을 이용하여 정보를 가져왔습니다.
