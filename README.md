@@ -1,4 +1,4 @@
-# WGT (Where are you going today?)
+# WGT (Where are you going today?) 😋
 + 매장 웨이팅 등록 및 소규모 SNS 서비스 제공 사이트
 + 2022.8.8 ~ 2022.8.20
 + 모바일 인터페이스
