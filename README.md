@@ -144,53 +144,53 @@
   4. 매장을 검색했을 때 그 매장의 메뉴도 불러와서 조회할 수 있도록 하는 과정에서 어려움이 있었습니다.
   5. forEach문에서 해결하려고 해서 갈피를 못잡았지만 스크립트에 배열과 for문을 이용하여 해결하였습니다.
   
-                              Map.jsp 일부
-                              
-                              <c:forEach var="menu" items="${menuList}" varStatus="status">
-                                <c:forEach var="x" items="${menu}" varStatus="t">
-                                  <div class="menulist${status.index}"
-                                    id="findmenu${status.index}${t.index}" style="display: none;">
-                                      <span class="menu">${menuList[status.index][t.index].menuName}: </span>
-                                      <span class="menu">${menuList[status.index][t.index].menuPrice}</span>
-                                  </div>
-                                </c:forEach>
-                              </c:forEach>
-                              
-                              Map.jsp 스크립트 일부
-                              
-                              function filter() {
+                Map.jsp 일부
 
-                              var value, name, item, i, background, menuList, menu;
+                <c:forEach var="menu" items="${menuList}" varStatus="status">
+                  <c:forEach var="x" items="${menu}" varStatus="t">
+                    <div class="menulist${status.index}"
+                      id="findmenu${status.index}${t.index}" style="display: none;">
+                        <span class="menu">${menuList[status.index][t.index].menuName}: </span>
+                        <span class="menu">${menuList[status.index][t.index].menuPrice}</span>
+                    </div>
+                  </c:forEach>
+                </c:forEach>
 
-                              value = document.getElementById("inputSearch").value.toUpperCase();
-                              item = document.getElementsByClassName("item");
-                              background = document.getElementById("menu_wrap")
-                              menuList = []
+                Map.jsp 스크립트 일부
 
-                              for (i = 0; i < item.length; i++) {
-                                menuList.push(document.getElementsByClassName("menulist" + i));
-                                name = item[i].getElementsByClassName("name")
-                                for (j = 0; j < menuList[i].length; j++) {
-                                  menu = menuList[i][j].getElementsByClassName("menu")
-                                  if (name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
-                                    item[i].style.display = "block";
-                                    menuList[i][j].style.display = "block";
-                                    background.style.opacity = "100";
-                                    background.style.left = "0";
-                                  } else {
-                                    item[i].style.display = "none";
-                                    menuList[i][j].style.display = "none";
-                                  }
+                function filter() {
 
-                                  if (value.length == 0) {
-                                    menuList[i][j].style.display = "none";
-                                    item[i].style.display = "none";
-                                    background.style.opacity = "0";
-                                    background.style.left = "-270px";
-                                  }
-                                }
-                                }
-                              }
+                var value, name, item, i, background, menuList, menu;
+
+                value = document.getElementById("inputSearch").value.toUpperCase();
+                item = document.getElementsByClassName("item");
+                background = document.getElementById("menu_wrap")
+                menuList = []
+
+                for (i = 0; i < item.length; i++) {
+                  menuList.push(document.getElementsByClassName("menulist" + i));
+                  name = item[i].getElementsByClassName("name")
+                  for (j = 0; j < menuList[i].length; j++) {
+                    menu = menuList[i][j].getElementsByClassName("menu")
+                    if (name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
+                      item[i].style.display = "block";
+                      menuList[i][j].style.display = "block";
+                      background.style.opacity = "100";
+                      background.style.left = "0";
+                    } else {
+                      item[i].style.display = "none";
+                      menuList[i][j].style.display = "none";
+                    }
+
+                    if (value.length == 0) {
+                      menuList[i][j].style.display = "none";
+                      item[i].style.display = "none";
+                      background.style.opacity = "0";
+                      background.style.left = "-270px";
+                    }
+                  }
+                  }
+                }
 
 
 + 웨이팅 조회 및 등록
@@ -199,91 +199,91 @@
   3. 웨이팅 첫번째 순서일 때 자동으로 웨이팅 취소를 시키기 위해 먼저 현재시간에서 5분뒤의 시간을 DB에 저장시켰습니다.
   4. DB에 저장한 시간과 현재시간을 비교해 현재시간이 더 크다면 웨이팅을 삭제시켜주었습니다.
   
-                       WaitingController 일부
-  
-                       @GetMapping("/controller/get_waiting")
-                       public String getWaitingForm(Model model, HttpSession session) throws ParseException {
-                       // 웨이팅을 하지 않았을 때
-                       if (waitingService.findWaitingById((String) session.getAttribute("userId")).get(0).getBarName() == "없음") {
-                         List<Waiting> noWaiting = waitingService.findWaitingById((String) session.getAttribute("userId"));
-                         model.addAttribute("frontCount", "0");
-                         model.addAttribute("allCount", "0");
-                         model.addAttribute("waiting", noWaiting);
-                         model.addAttribute("shopTel", "-");
-                         return "waiting/get_waiting";
-                       }
+                 WaitingController 일부
 
-                       // 웨이팅 해둔 상태 일때
-                       List<Waiting> waitingList = waitingService.findAllWaiting(
-                           waitingService.findWaitingById((String) session.getAttribute("userId")).get(0).getBarName());
-                       long allCount = 0;
-                       long frontCount = 0;
+                 @GetMapping("/controller/get_waiting")
+                 public String getWaitingForm(Model model, HttpSession session) throws ParseException {
+                 // 웨이팅을 하지 않았을 때
+                 if (waitingService.findWaitingById((String) session.getAttribute("userId")).get(0).getBarName() == "없음") {
+                   List<Waiting> noWaiting = waitingService.findWaitingById((String) session.getAttribute("userId"));
+                   model.addAttribute("frontCount", "0");
+                   model.addAttribute("allCount", "0");
+                   model.addAttribute("waiting", noWaiting);
+                   model.addAttribute("shopTel", "-");
+                   return "waiting/get_waiting";
+                 }
 
-                       try {
-                         Date day1;
-                         Date day2;
-                         day2 = format
-                             .parse(waitingService.findWaitingById((String) session.getAttribute("userId")).get(0).getRegDate());
-                         for (int i = 0; i < waitingList.size(); i++) {
-                           allCount++; // 특정 매장에대한 나 포함 모든 웨이팅 수
-                           day1 = format.parse(waitingList.get(i).getRegDate());
-                           int compare = day1.compareTo(day2);
-                           if (compare < 0) {
-                             frontCount++; // 내 앞의 웨이팅 수
-                           }
-                         }
-                       } catch (ParseException e) {
-                         e.printStackTrace();
-                       }
+                 // 웨이팅 해둔 상태 일때
+                 List<Waiting> waitingList = waitingService.findAllWaiting(
+                     waitingService.findWaitingById((String) session.getAttribute("userId")).get(0).getBarName());
+                 long allCount = 0;
+                 long frontCount = 0;
 
-                       model.addAttribute("frontCount", frontCount);
-                       model.addAttribute("allCount", allCount);
-                       model.addAttribute("waiting", waitingService.findWaitingById((String) session.getAttribute("userId")));
-                       model.addAttribute("shopTel",
-                           shopService.findAllByShopName(
-                               waitingService.findWaitingById((String) session.getAttribute("userId")).get(0).getBarName()).get(0).getShopTel());
-                       // 내 앞 대기팀이 0팀 일때
-                       if (frontCount == 0) {
-                         // 언제까지오라는 시간 부여받지 않았을때 or waitingStartTime이 0 일때
-                         if (waitingService.findWaitingById((String) session.getAttribute("userId")).get(0).getWaitingStartTime()
-                             .equals("0")) {
-                           SimpleDateFormat outputFormat = new SimpleDateFormat("HH:mm:ss");
-                           Date nowDate = new Date();
-                           Calendar cal = Calendar.getInstance();
-                           cal.setTime(nowDate);
-                           cal.add(Calendar.MINUTE, 1);
-                           String outputText = outputFormat.format(cal.getTime());
+                 try {
+                   Date day1;
+                   Date day2;
+                   day2 = format
+                       .parse(waitingService.findWaitingById((String) session.getAttribute("userId")).get(0).getRegDate());
+                   for (int i = 0; i < waitingList.size(); i++) {
+                     allCount++; // 특정 매장에대한 나 포함 모든 웨이팅 수
+                     day1 = format.parse(waitingList.get(i).getRegDate());
+                     int compare = day1.compareTo(day2);
+                     if (compare < 0) {
+                       frontCount++; // 내 앞의 웨이팅 수
+                     }
+                   }
+                 } catch (ParseException e) {
+                   e.printStackTrace();
+                 }
 
-                           waitingService.addWaitingTime((String) session.getAttribute("userId"), outputText);
-                           String waitingTime = waitingService.findWaitingById((String) session.getAttribute("userId")).get(0)
-                               .getWaitingStartTime();
-                           model.addAttribute("msg", waitingTime + " 까지 와주시기 바랍니다. (자동취소 예정)");
-                           return "waiting/get_waiting";
-                         } else { 
-                           // 언제까지 오라는 시간을 부여 받은 상황
-                           SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
-                           Date nowDate = new Date();
+                 model.addAttribute("frontCount", frontCount);
+                 model.addAttribute("allCount", allCount);
+                 model.addAttribute("waiting", waitingService.findWaitingById((String) session.getAttribute("userId")));
+                 model.addAttribute("shopTel",
+                     shopService.findAllByShopName(
+                         waitingService.findWaitingById((String) session.getAttribute("userId")).get(0).getBarName()).get(0).getShopTel());
+                 // 내 앞 대기팀이 0팀 일때
+                 if (frontCount == 0) {
+                   // 언제까지오라는 시간 부여받지 않았을때 or waitingStartTime이 0 일때
+                   if (waitingService.findWaitingById((String) session.getAttribute("userId")).get(0).getWaitingStartTime()
+                       .equals("0")) {
+                     SimpleDateFormat outputFormat = new SimpleDateFormat("HH:mm:ss");
+                     Date nowDate = new Date();
+                     Calendar cal = Calendar.getInstance();
+                     cal.setTime(nowDate);
+                     cal.add(Calendar.MINUTE, 1);
+                     String outputText = outputFormat.format(cal.getTime());
 
-                           String waitingTime = waitingService.findWaitingById((String) session.getAttribute("userId")).get(0)
-                               .getWaitingStartTime();
+                     waitingService.addWaitingTime((String) session.getAttribute("userId"), outputText);
+                     String waitingTime = waitingService.findWaitingById((String) session.getAttribute("userId")).get(0)
+                         .getWaitingStartTime();
+                     model.addAttribute("msg", waitingTime + " 까지 와주시기 바랍니다. (자동취소 예정)");
+                     return "waiting/get_waiting";
+                   } else { 
+                     // 언제까지 오라는 시간을 부여 받은 상황
+                     SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+                     Date nowDate = new Date();
 
-                           System.out.println(waitingTime);
-                           System.out.println(formatter.parse(waitingTime));
-                           //				String now = formatter.format(nowDate);
-                           //				System.out.println(formatter.parse(waitingTime).after(now));
+                     String waitingTime = waitingService.findWaitingById((String) session.getAttribute("userId")).get(0)
+                         .getWaitingStartTime();
 
-                           model.addAttribute("msg", waitingTime + " 까지 와주시기 바랍니다. (자동취소 예정)");
+                     System.out.println(waitingTime);
+                     System.out.println(formatter.parse(waitingTime));
+                     //				String now = formatter.format(nowDate);
+                     //				System.out.println(formatter.parse(waitingTime).after(now));
 
-                           System.out.println(nowDate.after(formatter.parse(waitingTime)));
-                           // 현재시간과 웨이팅타임을 비교하여 현재시간이 더 늦으면 웨이팅을 지우기
-                           if ( nowDate.after(formatter.parse(waitingTime)) ) { // formatter.parse(waitingTime).after(nowDate)
-                             waitingService.deleteWaiting((String) session.getAttribute("userId"));
-                             return "waiting/get_waiting";
-                           }
-                            }
-                           }
-                           return "waiting/get_waiting";
-                            }  
+                     model.addAttribute("msg", waitingTime + " 까지 와주시기 바랍니다. (자동취소 예정)");
+
+                     System.out.println(nowDate.after(formatter.parse(waitingTime)));
+                     // 현재시간과 웨이팅타임을 비교하여 현재시간이 더 늦으면 웨이팅을 지우기
+                     if ( nowDate.after(formatter.parse(waitingTime)) ) { // formatter.parse(waitingTime).after(nowDate)
+                       waitingService.deleteWaiting((String) session.getAttribute("userId"));
+                       return "waiting/get_waiting";
+                     }
+                      }
+                     }
+                     return "waiting/get_waiting";
+                      }  
   
                             
 
