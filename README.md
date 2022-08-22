@@ -141,7 +141,56 @@
                               return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Map>(Map.class));
                               }              
 
-  4. 
+  4. 매장을 검색했을 때 그 매장의 메뉴도 불러와서 조회할 수 있도록 하는 과정에서 어려움이 있었습니다.
+  5. forEach문에서 해결하려고 해서 갈피를 못잡았지만 스크립트에 배열과 for문을 이용하여 해결하였습니다.
+  
+                              Map.jsp 일부
+                              
+                              <c:forEach var="menu" items="${menuList}" varStatus="status">
+                                <c:forEach var="x" items="${menu}" varStatus="t">
+                                  <div class="menulist${status.index}"
+                                    id="findmenu${status.index}${t.index}" style="display: none;">
+                                      <span class="menu">${menuList[status.index][t.index].menuName}: </span>
+                                      <span class="menu">${menuList[status.index][t.index].menuPrice}</span>
+                                  </div>
+                                </c:forEach>
+                              </c:forEach>
+                              
+                              Map.jsp 스크립트 일부
+                              
+                              function filter() {
+
+                              var value, name, item, i, background, menuList, menu;
+
+                              value = document.getElementById("inputSearch").value.toUpperCase();
+                              item = document.getElementsByClassName("item");
+                              background = document.getElementById("menu_wrap")
+                              menuList = []
+
+                              for (i = 0; i < item.length; i++) {
+                                menuList.push(document.getElementsByClassName("menulist" + i));
+                                name = item[i].getElementsByClassName("name")
+                                for (j = 0; j < menuList[i].length; j++) {
+                                  menu = menuList[i][j].getElementsByClassName("menu")
+                                  if (name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
+                                    item[i].style.display = "block";
+                                    menuList[i][j].style.display = "block";
+                                    background.style.opacity = "100";
+                                    background.style.left = "0";
+                                  } else {
+                                    item[i].style.display = "none";
+                                    menuList[i][j].style.display = "none";
+                                  }
+
+                                  if (value.length == 0) {
+                                    menuList[i][j].style.display = "none";
+                                    item[i].style.display = "none";
+                                    background.style.opacity = "0";
+                                    background.style.left = "-270px";
+                                  }
+                                }
+                                }
+                              }
 
 
 + 웨이팅 조회 및 등록
