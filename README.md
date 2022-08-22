@@ -60,86 +60,86 @@
 
               inputText.push(document.getElementById("findname" + i).value)
 
-                            // 마커를 생성하고 지도위에 표시합니다
-                            addMarker(positions[i], inputText[i], content[i],
-                                normalOrigin, overOrigin, clickOrigin);
+                        // 마커를 생성하고 지도위에 표시합니다
+                        addMarker(positions[i], inputText[i], content[i],
+                            normalOrigin, overOrigin, clickOrigin);
+                        }
+                        // 마커를 생성하고 지도 위에 표시하고, 마커에 mouseover, mouseout, click 이벤트를 등록하는 함수입니다
+                        function addMarker(position, inputText, content,
+                            normalOrigin, overOrigin, clickOrigin) {
+
+                        var markerImage = new kakao.maps.MarkerImage(imageSrc,
+                            markerSize), overMarker = new kakao.maps.MarkerImage(
+                            imageSrc, overMarkerSize), clickMarker = new kakao.maps.MarkerImage(
+                            imageSrc, clickMarkerSize);
+
+                        // 마커를 생성하고 이미지는 기본 마커 이미지를 사용합니다
+                        var marker = new kakao.maps.Marker({
+                          map : map,
+                          position : position,
+                          image : markerImage
+                        });
+
+                        var overlay = new kakao.maps.CustomOverlay({
+                          content : content,
+                          map : map,
+                          position : position
+                        });
+
+                        marker.markerImage = markerImage;
+                        // 마커에 click 이벤트를 등록합니다
+                        overlay.setMap(null);
+                        kakao.maps.event
+                            .addListener(
+                                marker,
+                        'click',
+                        function() {
+                          // 클릭된 마커가 없고, click 마커가 클릭된 마커가 아니면
+                          // 마커의 이미지를 클릭 이미지로 변경합니다
+                          for (var i = 0, len = count; i < len; i++) {
+                            document.getElementById("inputSearch").value = inputText
+                          }
+
+                          if (!selectedMarker
+                              || selectedMarker !== marker) {
+                            // 클릭된 마커 객체가 null이 아니면
+                            // 클릭된 마커의 이미지를 기본 이미지로 변경하고
+                            !!selectedMarker
+                                && selectedMarker
+                                    .setImage(selectedMarker.markerImage);
+                            !!selectedContent
+                                && selectedContent.setMap(null);
+                          }
+                          filter()
+
+                          // 현재 클릭된 마커의 이미지는 클릭 이미지로 변경, 컨테츠를 띄워줌
+                          if (marker.markerImage != clickMarker) {
+                            marker.setImage(clickMarker)
+                            overlay.setMap(map)
+
                             }
-                            // 마커를 생성하고 지도 위에 표시하고, 마커에 mouseover, mouseout, click 이벤트를 등록하는 함수입니다
-                            function addMarker(position, inputText, content,
-                                normalOrigin, overOrigin, clickOrigin) {
 
-                            var markerImage = new kakao.maps.MarkerImage(imageSrc,
-                                markerSize), overMarker = new kakao.maps.MarkerImage(
-                                imageSrc, overMarkerSize), clickMarker = new kakao.maps.MarkerImage(
-                                imageSrc, clickMarkerSize);
+                            // 클릭된 마커를 현재 클릭된 마커 객체로 설정합니다
+                            selectedMarker = marker;
+                            selectedContent = overlay;
 
-                            // 마커를 생성하고 이미지는 기본 마커 이미지를 사용합니다
-                            var marker = new kakao.maps.Marker({
-                              map : map,
-                              position : position,
-                              image : markerImage
-                            });
+                          });
 
-                            var overlay = new kakao.maps.CustomOverlay({
-                              content : content,
-                              map : map,
-                              position : position
-                            });
-
-                            marker.markerImage = markerImage;
-                            // 마커에 click 이벤트를 등록합니다
-                            overlay.setMap(null);
-                            kakao.maps.event
-                                .addListener(
-                                    marker,
-                            'click',
-                            function() {
-                              // 클릭된 마커가 없고, click 마커가 클릭된 마커가 아니면
-                              // 마커의 이미지를 클릭 이미지로 변경합니다
-                              for (var i = 0, len = count; i < len; i++) {
-                                document.getElementById("inputSearch").value = inputText
+                            kakao.maps.event.addListener(map, 'click', function() {
+                              if (!overlay.setMap(null)) {
+                                overlay.setMap(null);
+                                marker.setImage(markerImage)
                               }
+                            })
+                          }
 
-                              if (!selectedMarker
-                                  || selectedMarker !== marker) {
-                                // 클릭된 마커 객체가 null이 아니면
-                                // 클릭된 마커의 이미지를 기본 이미지로 변경하고
-                                !!selectedMarker
-                                    && selectedMarker
-                                        .setImage(selectedMarker.markerImage);
-                                !!selectedContent
-                                    && selectedContent.setMap(null);
-                              }
-                              filter()
 
-                              // 현재 클릭된 마커의 이미지는 클릭 이미지로 변경, 컨테츠를 띄워줌
-                              if (marker.markerImage != clickMarker) {
-                                marker.setImage(clickMarker)
-                                overlay.setMap(map)
+                          MapDao 일부
 
-                                }
-
-                                // 클릭된 마커를 현재 클릭된 마커 객체로 설정합니다
-                                selectedMarker = marker;
-                                selectedContent = overlay;
-
-                              });
-
-                                kakao.maps.event.addListener(map, 'click', function() {
-                                  if (!overlay.setMap(null)) {
-                                    overlay.setMap(null);
-                                    marker.setImage(markerImage)
-                                  }
-                                })
-                              }
-
-                              
-                              MapDao 일부
-                              
-                              public List<Map> search(String name){
-                              String sql = "SELECT * FROM test WHERE name like '%" + name +"%' ";
-                              return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Map>(Map.class));
-                              }              
+                          public List<Map> search(String name){
+                          String sql = "SELECT * FROM test WHERE name like '%" + name +"%' ";
+                          return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Map>(Map.class));
+                          }              
 
   4. 매장을 검색했을 때 그 매장의 메뉴도 불러와서 조회할 수 있도록 하는 과정에서 어려움이 있었습니다.
   5. forEach문에서 해결하려고 해서 갈피를 못잡았지만 스크립트에 배열과 for문을 이용하여 해결하였습니다.
