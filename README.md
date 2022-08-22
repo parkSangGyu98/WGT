@@ -239,31 +239,36 @@
 ## 구현 화면
   ### 로그인
   
-  ![image](https://user-images.githubusercontent.com/103983349/185738173-a63e5598-d8cd-4302-98e1-bbd43f3fc4ad.png)
+  ![image](https://user-images.githubusercontent.com/103983349/185832375-9707c544-f180-4498-b88a-5555079e6bca.png)
+  ![image](https://user-images.githubusercontent.com/103983349/185832405-d0fbac5f-4523-4a01-9d6d-79e1f89ad091.png)
 
-  ### 로그인
+  ### 사용자 회원가입
   
-  url 위치
+  ![image](https://user-images.githubusercontent.com/103983349/185832447-31edfd86-0ddb-49ff-ac04-99319711f116.png)
   
-  ### 회원가입
+  ### 점주 회원가입 및 매장 등록
   
-  url 위치
-  
-  ### 점주 회원가입
-  
-  url 위치
+  ![image](https://user-images.githubusercontent.com/103983349/185832474-b2ca2435-94eb-4513-b53b-ee2f323cc32a.png)
+  ![image](https://user-images.githubusercontent.com/103983349/185832628-fb1b6133-6b11-45df-b7f5-709f252d7018.png)
+  ![image](https://user-images.githubusercontent.com/103983349/185832648-05268b9c-9855-4e52-a8b6-20e91609fc1f.png)
+  ![image](https://user-images.githubusercontent.com/103983349/185832732-acb66a6c-6ee6-45a5-b16b-eddbd57a9f40.png)
+  ![image](https://user-images.githubusercontent.com/103983349/185832846-88e2738a-e6f9-4726-b1b1-fa768da9e85f.png)
+  ![image](https://user-images.githubusercontent.com/103983349/185832917-53ef22d6-9ed5-414c-a0d6-7bf026f4f2b5.png)
+  ![image](https://user-images.githubusercontent.com/103983349/185832956-02f4a112-6e66-41f5-bc22-57131b28bdd2.png)
+  ![image](https://user-images.githubusercontent.com/103983349/185833147-730194d5-bb5d-4901-9294-4caf0691f49d.png)
+  ![image](https://user-images.githubusercontent.com/103983349/185833159-4fe5325a-27a3-41b0-a3a2-6f96a642360c.png)
   
   ### 메인 화면
   
-  url 위치
+  ![image](https://user-images.githubusercontent.com/103983349/185833612-83dcaa7d-2033-4cdb-bd4f-b5f8e768ccc2.png)
   
   ### 우측상단 버튼
   
-  ![image](https://user-images.githubusercontent.com/103983349/185738276-ca874d22-c423-42cd-8b62-3764b5c2b070.png)
+  ![image](https://user-images.githubusercontent.com/103983349/185833632-b3cd71c9-dc32-4977-afec-3b7b49a5302d.png)
   
   ### 나의 웨이팅 내역
   
-  url 위치
+  ![image](https://user-images.githubusercontent.com/103983349/185833322-6be8eb37-5e15-4807-b657-c82818cb21c7.png)
   
   ### 회원 정보 열람 및 수정
   
@@ -273,13 +278,9 @@
   
   url 위치
   
-  ### 매장 정보 조회
-  
-  url 위치
-  
   ### 웨이팅 등록
   
-  url 위치
+  ![image](https://user-images.githubusercontent.com/103983349/185833842-4e75efb3-75b5-4308-b070-e2d3b7552772.png)
   
   ### SNS
   
@@ -293,11 +294,3 @@
   
   url 위치
   
-  ### 점주 매장 등록
-  
-  url 위치
-  
-  ### 점주 메뉴 등록
-
-  url 위치
-
