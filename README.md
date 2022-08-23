@@ -401,13 +401,16 @@
   
   ### SNS
   
-  css 보수중
+  ![image](https://user-images.githubusercontent.com/103983349/186072136-a9007828-932a-4401-b720-b15b598ecbb9.png)
+  ![image](https://user-images.githubusercontent.com/103983349/186072156-878baa23-ff59-40a1-9892-bfb1d6fe3999.png)
+
   
   ### 게시글 작성
   
-  css 보수중
+  ![image](https://user-images.githubusercontent.com/103983349/186072199-8df24539-607a-4c05-9a4f-f70abbffe7bf.png)
   
   ### 게시글 수정
   
-  css 보수중
-  
+  ![image](https://user-images.githubusercontent.com/103983349/186072262-191c6f1c-b85d-49eb-b86f-f536e151479a.png)
+  ![image](https://user-images.githubusercontent.com/103983349/186072305-25af9634-5f00-4d6c-9546-4ac71065c1cd.png)
+
