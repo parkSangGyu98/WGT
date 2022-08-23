@@ -1,9 +1,0 @@
-package com.varxyz.wgt.owner.service;
-
-import com.varxyz.wgt.owner.doamin.Owner;
-
-public interface OwnerService {
-
-	void addOwner(Owner owner);
-		
-}

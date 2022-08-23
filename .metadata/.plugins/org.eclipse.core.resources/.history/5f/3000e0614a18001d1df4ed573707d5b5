@@ -1,5 +1,0 @@
-package com.varxyz.wgt.waiting.service;
-
-public interface WaitingService {
-
-}

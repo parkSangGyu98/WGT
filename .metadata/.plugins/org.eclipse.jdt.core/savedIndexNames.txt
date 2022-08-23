@@ -23,7 +23,6 @@ INDEX VERSION 1.131+C:\wgt\Where-are-you-going-today\.metadata\.plugins\org.ecli
 415980039.index
 314661876.index
 222129443.index
-1977457562.index
 3044232395.index
 2643172111.index
 1274340969.index
