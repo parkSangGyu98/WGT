@@ -289,9 +289,11 @@
   1. DB에 좋아요 테이블을 만들고 눌려졌는지 체크하는 likeCheck 열 만들어 true, false로 구분하였습니다.
   2. 좋아요 클릭 시 false 라면 true 로 바꿔줌과 동시에 게시글 총 좋아요 개수를 1 더하여 업데이트 해주었습니다.
   3. A 아이디로 좋아요를 눌러둔 상태에서 B가 로그인 했을 때, 좋아요가 눌러져있는 상황에 어려움을 겪었습니다.
-  4. 
+  4. 우선, controller에서 Like테이블의 likeCheck를 이용하여 for문과 if문을 사용해서 false인지 true인지 확인하였습니다.
+  5. false라면 게시글의 좋아요 이미지 모두를 흰색하트로 변경하는 작업을 추가하면서 해결할 수 있었습니다. (true 라면 반대로 빨간하트 추가)
+ 
   
-                BoardController 
+                BoardController 일부
 
                 @GetMapping("/board/home")
                 public String list(HttpSession session, Model model, Board board) {
