@@ -386,7 +386,7 @@
   
   ### 우측상단 버튼
   
-  ![image](https://user-images.githubusercontent.com/103983349/185833632-b3cd71c9-dc32-4977-afec-3b7b49a5302d.png)
+  ![image](https://user-images.githubusercontent.com/103983349/186112422-b8f3f89d-5da9-4167-8df3-a1bf908ff770.png)
   
   ### 나의 웨이팅 내역
   
