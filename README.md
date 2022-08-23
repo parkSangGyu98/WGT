@@ -285,7 +285,7 @@
                      return "waiting/get_waiting";
                       }  
   
-  + 게시글 좋아요 기능
++ 게시글 좋아요 기능
   1. ㅇ
   
                     BoardController 
