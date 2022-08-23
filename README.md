@@ -398,7 +398,7 @@
   
   ### 검색
   
-  css 보수중
+  ![image](https://user-images.githubusercontent.com/103983349/186111419-0bd5895d-d4ba-4452-8629-879e292affb6.png)
   
   ### 웨이팅 등록
   
