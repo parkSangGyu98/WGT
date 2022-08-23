@@ -1,6 +1,6 @@
 # WGT (Where are you going today?) 😋
 + 매장 웨이팅 등록 및 소규모 SNS 서비스 제공 사이트
-+ 2022.8.8 ~ 2022.8.20
++ 2022.8.8 ~ 2022.8.22
 + 모바일 인터페이스
 ## 팀 구성
 + 총 5명 ( [본인](https://github.com/parkSangGyu98) [태우](https://github.com/workhan0918) [태영](https://github.com/wed456) [기열](https://github.com/BaekKiYeol) [성호](https://github.com/LeeSeongHo7984) )
@@ -285,6 +285,77 @@
                      return "waiting/get_waiting";
                       }  
   
++ 게시글 좋아요 기능
+  1. DB에 좋아요 테이블을 만들고 눌려졌는지 체크하는 likeCheck 열 만들어 true, false로 구분하였습니다.
+  2. 좋아요 클릭 시 false 라면 true 로 바꿔줌과 동시에 게시글 총 좋아요 개수를 1 더하여 업데이트 해주었습니다.
+  3. A 아이디로 좋아요를 눌러둔 상태에서 B가 로그인 했을 때, 좋아요가 눌러져있는 상황에 어려움을 겪었습니다.
+  4. 우선, controller에서 Like테이블의 likeCheck를 이용하여 for문과 if문을 사용해서 false인지 true인지 확인하였습니다.
+  5. false라면 게시글의 좋아요 이미지 모두를 흰색하트로 변경하는 작업을 추가하면서 해결할 수 있었습니다. (true 라면 반대로 빨간하트 추가)
+ 
+  
+                BoardController 일부
+
+                @GetMapping("/board/home")
+                public String list(HttpSession session, Model model, Board board) {
+                  String userId = (String) session.getAttribute("userId");
+                  if (session.getAttribute("userId") == null) {
+                    model.addAttribute("msg", "로그인이 필요한 서비스 입니다.");
+                    model.addAttribute("url", "../login");
+                    return "alert/alert";
+                  }
+
+                  for (int i = 0; i < service.read(board).size(); i++) {
+                    long boardNum = service.read(board).get(i).getNumber();
+
+                    if ( service.findLikes(userId, boardNum).get(0).getLikeCheck().equals("false") ) {
+                      service.updateLikeImg(boardNum, "dislikeheart");
+                    }else {
+                      service.updateLikeImg(boardNum, "likeheart");
+                    }
+                  }
+
+                  model.addAttribute("board", service.read(board));
+
+                  return "board/home";
+                }
+
+                @GetMapping("/board/likes")
+                public String getLikes(HttpSession session, Model model, Board board) {
+                  String userId = (String) session.getAttribute("userId");
+
+                  if (session.getAttribute("userId") == null) {
+                    model.addAttribute("msg", "로그인이 필요한 서비스 입니다.");
+                    model.addAttribute("url", "../login");
+                    return "alert/alert";
+                  }
+
+
+                  // 만약 Likes 테이블에 id, number가 동일한 정보가 없으면 만들어주기 아니면 밑에꺼 실행 
+                  if ( service.findLikes(userId, board.getNumber()).get(0).getUserId().equals("없음")
+                      && service.findLikes(userId, board.getNumber()).get(0).getNumber() == -1 ) {
+                    Likes likes = new Likes();
+                    String result = "false";
+                    likes.setUserId(userId);
+                    likes.setLikeCheck(result);
+                    likes.setNumber(board.getNumber());
+                    service.likeuser(likes);
+                    service.checkUpdate(userId, board.getNumber(), "true");
+                    service.likecountPlus(board.getLikecount(), board.getNumber());
+                    service.updateLikeImg(board.getNumber(), "likeheart");
+                  }else { // DB에 아이디랑 게시글번호가 동일한 정보가 있다면 true, false를 비교한다
+                    if(service.findLikes(userId, board.getNumber()).get(0).getLikeCheck().equals("false")) { // 좋아요를 누르지 않은 상태태
+                      service.checkUpdate(userId, board.getNumber(), "true");
+                      service.likecountPlus(board.getLikecount(), board.getNumber());
+                      service.updateLikeImg(board.getNumber(), "likeheart");
+                    }else {
+                      service.checkUpdate(userId, board.getNumber(), "false");
+                      service.likecountDown(board.getLikecount(), board.getNumber());
+                      service.updateLikeImg(board.getNumber(), "dislikeheart");
+                    }
+                  }
+
+                  return "redirect:/board/home";
+                }
                             
 
 ## 구현 화면
@@ -315,7 +386,7 @@
   
   ### 우측상단 버튼
   
-  ![image](https://user-images.githubusercontent.com/103983349/185833632-b3cd71c9-dc32-4977-afec-3b7b49a5302d.png)
+  ![image](https://user-images.githubusercontent.com/103983349/186112422-b8f3f89d-5da9-4167-8df3-a1bf908ff770.png)
   
   ### 나의 웨이팅 내역
   
@@ -327,7 +398,7 @@
   
   ### 검색
   
-  url 위치
+  ![image](https://user-images.githubusercontent.com/103983349/186111419-0bd5895d-d4ba-4452-8629-879e292affb6.png)
   
   ### 웨이팅 등록
   
@@ -335,13 +406,16 @@
   
   ### SNS
   
-  url 위치
+  ![image](https://user-images.githubusercontent.com/103983349/186072136-a9007828-932a-4401-b720-b15b598ecbb9.png)
+  ![image](https://user-images.githubusercontent.com/103983349/186072156-878baa23-ff59-40a1-9892-bfb1d6fe3999.png)
+
   
   ### 게시글 작성
   
-  url 위치
+  ![image](https://user-images.githubusercontent.com/103983349/186072199-8df24539-607a-4c05-9a4f-f70abbffe7bf.png)
   
   ### 게시글 수정
   
-  url 위치
-  
+  ![image](https://user-images.githubusercontent.com/103983349/186072262-191c6f1c-b85d-49eb-b86f-f536e151479a.png)
+  ![image](https://user-images.githubusercontent.com/103983349/186072305-25af9634-5f00-4d6c-9546-4ac71065c1cd.png)
+
