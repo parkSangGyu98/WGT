@@ -366,7 +366,7 @@
   ![image](https://user-images.githubusercontent.com/103983349/185832405-d0fbac5f-4523-4a01-9d6d-79e1f89ad091.png)
 
   ### 사용자 회원가입
-    + 우편번호 찾기는 API를 이용하였습니다.
+  + 우편번호 찾기는 API를 이용하였습니다.
     
   ![image](https://user-images.githubusercontent.com/103983349/185832447-31edfd86-0ddb-49ff-ac04-99319711f116.png)
   
