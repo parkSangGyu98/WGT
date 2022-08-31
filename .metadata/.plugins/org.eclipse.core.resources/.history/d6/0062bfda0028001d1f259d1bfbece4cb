@@ -1,0 +1,88 @@
+package com.varxyz.wgt.login.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.varxyz.wgt.login.service.OwnerLoginService;
+import com.varxyz.wgt.login.serviceImpl.OwnerLoginServiceImpl;
+import com.varxyz.wgt.owner.doamin.Owner;
+import com.varxyz.wgt.owner.service.OwnerService;
+import com.varxyz.wgt.owner.serviceImpl.OwnerServiceImpl;
+import com.varxyz.wgt.shop.service.ShopService;
+import com.varxyz.wgt.shop.service.ShopServiceImpl;
+
+@Controller
+public class OwnerLoginController {
+	OwnerLoginService ownerLoginService = new OwnerLoginServiceImpl();
+
+	OwnerService ownerService = new OwnerServiceImpl();
+
+	// 점주 로그인
+	@GetMapping("/ownerLogin")
+	public String ownerForm(HttpSession session) {
+		session.invalidate();	// 세션 단절
+
+		return "login/ownerLogin";
+	}
+
+	@PostMapping("/ownerLogin")
+	public String ownerLogin(Owner owner, HttpSession session, HttpServletRequest request,
+							Model model) {
+
+		// 수정 전 코드
+//		List<Owner> ownerList = new ArrayList<Owner>();
+//		ownerList = ownerService.findAllOwner(owner.getOwnerId());
+
+		/*
+		 *  findAllOwner 기능 = 점주 ID로 점주 '1'명의 정보를 모두 불러 오는것
+		 *  그렇기 때문에 List<Owner>로 dao에서 query로 받기보다는 queryObject로 그냥 하나의 Owner 객체로 받아오는것이 더 낫다
+		 *  수정한점 : OwnerDao.class에서 findAllOwner기능 중 query -> queryObject, return 타입 List<Owner> -> Owner
+		 */
+
+
+		// 수정 된 코드
+
+		Owner dbOwner = new Owner();
+		dbOwner = ownerService.findAllOwner(owner.getOwnerId());
+		session.setAttribute("dbOwner", dbOwner);
+
+		// 아이디, 비밀번호 틀릴시 유효성 검사
+		if(owner.getOwnerId().equals(dbOwner.getOwnerId()) &&
+		   owner.getPasswd().equals(dbOwner.getPasswd())) {
+
+			ShopService shopService = new ShopServiceImpl();
+
+			session.setAttribute("bnsNum", shopService.findShopByOwnerId(owner.getOwnerId()).getBusinessNumber());
+			session.setAttribute("ownerId", request.getParameter("ownerId"));
+			return "redirect:/add_shop";
+		}
+
+		System.out.println("로그인 실패");
+
+		model.addAttribute("msg", "회원정보가 틀렸습니다");
+		model.addAttribute("url", "ownerLogin");
+
+		return "error/error";
+	}
+
+	// 로그아웃
+	@GetMapping("/ownerLogOut")
+	public String ownerLogOutForm() {
+
+		return "logOut/ownerLogOut";
+	}
+
+	@PostMapping("ownerLogOut")
+	public String ownerLogOut(HttpSession session) {
+		session.invalidate(); // 세션단절
+
+		return "login/ownerLogin";
+	}
+
+
+}

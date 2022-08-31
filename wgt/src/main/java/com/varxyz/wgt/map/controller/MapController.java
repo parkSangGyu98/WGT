@@ -39,18 +39,16 @@ public class MapController {
 
 	@PostMapping("/map/root")
 	public String root(Shop shop, Model model, HttpSession session, HttpServletRequest request) {
-		model.addAttribute("shop", shopService.findAllShop());
 		session.setAttribute("shopBns", shop.getBusinessNumber());
-		session.setAttribute("shopName", shop.getShopName());
-		return "map/position";
+		return "redirect:/map/position";
 
 	}
 
 	@GetMapping("/map/position")
 	public String positionForm(Model model, HttpSession session) {
-		model.addAttribute("shopName",session.getAttribute("shopName"));
-		model.addAttribute("shopName",session.getAttribute("shopBns"));
-		return "map/root";
+		model.addAttribute("shop", shopService.findShopByBnsNum((String) session.getAttribute("shopBns")));
+		System.out.println(session.getAttribute("shopBns"));
+		return "map/position";
 	}
 
 	@PostMapping("/map/position")
@@ -69,13 +67,11 @@ public class MapController {
 		List<Shop> list = shopService.findAllShop();
 		model.addAttribute("shopFind", list);
 
-		// 경도 위도 불러오기
+		// 메뉴 불러오기
 		List<String> bnsList = shopService.findAllBns();
-		System.out.println("11: " + bnsList);
 		Set<String> set = new HashSet<String>(bnsList);
 		List<String> newBnsList = new ArrayList<>(set);
 		Collections.sort(newBnsList);
-		System.out.println("22: " + newBnsList);
 		List<List<Menu>> menuList = new ArrayList<>();
 		// List<Map> findShop = new ArrayList<>();
 		List<Map> map2 = mapService.findAll();
@@ -95,27 +91,6 @@ public class MapController {
 		
 		model.addAttribute("userId", session.getAttribute("userId"));
 
-		/*
-		 * 여기로 올때 temp 에 올렸던 이미지들을 자동으로 삭제한다. 2022-08-11 한태우(Shop 담당)
-		 */
-
-		// 가게 메뉴 삭제
-		if (session.getAttribute("tempShopImg") != null) {
-			for (String img : (List<String>) session.getAttribute("tempImgList")) {
-				File menuImg = new File(
-						"C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp\\" + img + ".jpg");
-				menuImg.delete();
-			}
-			session.removeAttribute("tempImgList");
-
-			// 가게 이미지 삭제
-			String img = (String) session.getAttribute("tempShopImg");
-			File shopImg = new File(
-					"C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp\\" + img + ".jpg");
-			shopImg.delete();
-			session.removeAttribute("tempShopImg");
-			// 문제 될시 주석 처리만 해주세용
-		}
 		// bnsNum session delete
 		session.removeAttribute("bnsNum");
 		return "map/map";

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.net.URLDecoder"%>
+<%@ page import="java.net.URLEncoder"%>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
@@ -17,7 +19,7 @@
         <div class="inner">
           <form action="add_shop2" method="post" id="addForm">
             <p>사업자 등록 번호</p>
-            <input type="text" name="bns_num" class="input_box" value="${bNum } " readonly>
+            <input type="text" name="bns_num" class="input_box">
             <p>가게 이름</p>
             <input type="text" name="shop_name" class="input_box" maxlength="10" oninput="autoString(this)" required>
             <p>가게 주소</p>
@@ -28,7 +30,7 @@
 			<input type="text" name="shop_address4" id="sample6_extraAddress" class="input_box" placeholder="참고항목" oninput="autoString(this)" maxlength="10" required>
             <hr>
             <div class="btn_wrap">
-              <input type="button" value="취소하기" onclick="location.href='map/map'" class="prev_btn">
+              <input type="button" value="취소하기" onclick="location.href='login'" class="prev_btn">
               <input type="submit" value="다음으로" class="next_btn">
             </div>
           </form>

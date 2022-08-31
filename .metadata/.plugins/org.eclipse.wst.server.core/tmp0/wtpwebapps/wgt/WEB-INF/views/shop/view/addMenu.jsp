@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../resources/shopStyle.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,  maximum-scale=1.0, minimum-scale=1.0">
-    <title>가게 등록</title>
+    <title>메뉴 추가</title>
   </head>
   <body>
     <div id="wrap">
@@ -32,7 +32,7 @@
               </table>
               <div class="btn_wrap">
                 <label for="upload_file" class="upload_label">메뉴 사진 등록</label>
-                <input id="upload_file" type="file" name="menu_img" onchange="readURL(this)" accept="image/jpeg, image/png, image/jpg">
+                <input id="upload_file" type="file" name="menu_img" onchange="readURL(this)" accept=".jpg">
               </div>
             </div>
             <hr class="hr">
@@ -50,8 +50,8 @@
     <script type="text/javascript">
 	  	function readURL(input) {
 			const type = input.files[0].name.split('.');
-			if(type[1] != "jpg" && type[1] != "png" &&  type[1] != "jpeg"){
-				alert("이미지 파일은 (jpg, png, jpeg) 형식만 등록 가능합니다.");
+			if(type[1] != "jpg"){
+				alert("이미지 파일은 jpg 형식만 등록 가능합니다.");
 				document.querySelector('.preview').src = "";
 				document.querySelector('.img').value = null;
 				return false;
