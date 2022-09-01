@@ -384,7 +384,7 @@
   
   ### 메인 화면
   
-  ![image](https://user-images.githubusercontent.com/103983349/185833612-83dcaa7d-2033-4cdb-bd4f-b5f8e768ccc2.png)
+  ![image](https://user-images.githubusercontent.com/103983349/187859943-f792f04b-e7f7-4d78-b1c8-13b273de015f.png)
   
   ### 우측상단 버튼
   
@@ -393,6 +393,10 @@
   ### 나의 웨이팅 내역
   
   ![image](https://user-images.githubusercontent.com/103983349/186304775-e35b4108-f1b4-476f-b8d7-5b34edbf2798.png)
+  
+  ### 매장 점주 - 현재 나의 매장 웨이팅 내역
+  
+  ![image](https://user-images.githubusercontent.com/103983349/187860109-d89887c1-cd24-48e9-905b-44354d8fb7c8.png)
   
   ### 회원 정보 열람 및 수정
   
